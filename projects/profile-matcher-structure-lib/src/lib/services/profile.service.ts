@@ -1,0 +1,108 @@
+import { Injectable } from '@angular/core';
+import {ProfileMatcherStructureRootService} from "./profile-matcher-structure-root.service";
+import {HttpClient, HttpParams} from "@angular/common/http";
+import {map, Observable, pipe} from "rxjs";
+import {Profile} from "../models/profile";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ProfileService {
+  private static readonly ROOT_PATH: string = '/profiles'
+
+  // dateFix() {
+  //   return pipe(map((appointment: Appointment) => {
+  //     if (appointment?.startTime) {
+  //       appointment.startTime = new Date(appointment.startTime);
+  //     }
+  //     if (appointment?.endTime) {
+  //       appointment.endTime = new Date(appointment.endTime);
+  //     }
+  //     return appointment;
+  //   }))
+  // }
+  //
+  // dateFixArray() {
+  //   return pipe(map((appointments: Appointment[]) => {
+  //     return appointments.map(appointment => {
+  //       if (appointment?.startTime) {
+  //         appointment.startTime = new Date(appointment.startTime);
+  //       }
+  //       if (appointment?.endTime) {
+  //         appointment.endTime = new Date(appointment.endTime);
+  //       }
+  //       return appointment;
+  //     });
+  //   }))
+  // }
+
+  constructor(private rootService: ProfileMatcherStructureRootService, private httpClient: HttpClient) { }
+
+  getAll(): Observable<Profile[]> {
+    return this.httpClient.get<Profile[]>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}`);
+  }
+  update(profile: Profile): Observable<Profile> {
+    return this.httpClient.put<Profile>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}`, profile);
+  }
+  create(profile: Profile): Observable<Profile> {
+    return this.httpClient.post<Profile>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}`, profile);
+  }
+  getById(id: number): Observable<Profile> {
+    return this.httpClient.get<Profile>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${id}`);
+  }
+  deleteById(id: number): Observable<void> {
+    return this.httpClient.delete<void>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${id}`);
+  }
+  countAll(): Observable<number> {
+    return this.httpClient.get<number>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/count`);
+  }
+  getAllCreatedByLoggedUser(): Observable<Profile[]> {
+    return this.httpClient.get<Profile[]>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/createdBy`);
+  }
+  getAllCreatedByUsername(username: string): Observable<Profile[]> {
+    return this.httpClient.get<Profile[]>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/createdBy/${username}`);
+  }
+  countAllCreatedByUsername(username: string): Observable<number> {
+    return this.httpClient.get<number>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/createdBy/${username}/count`);
+  }
+  countAllCreatedByLoggedUser(): Observable<number> {
+    return this.httpClient.get<number>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/createdBy/count`);
+  }
+  delete(profile: Profile): Observable<void> {
+    return this.httpClient.post<void>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/delete`, profile);
+  }
+  getByIdsParams(ids: number[]): Observable<Profile[]> {
+    let httpParams: HttpParams = new HttpParams();
+    ids.forEach(id => {
+      httpParams = httpParams.append('ids', id)
+    });
+    return this.httpClient.get<Profile[]>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/ids`, {params: httpParams});
+  }
+  getByIdsBody(ids: number[]): Observable<Profile[]> {
+    return this.httpClient.post<Profile[]>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/ids`, ids);
+  }
+  createBatch(profiles: Profile[]): Observable<Profile[]> {
+    return this.httpClient.post<Profile[]>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/list`, profiles);
+  }
+  getByCreationDateRange(from: Date, to: Date): Observable<Profile[]> {
+    let httpParams: HttpParams = new HttpParams();
+    httpParams = httpParams.append('from', from.toString());
+    httpParams = httpParams.append('to', to.toString());
+    return this.httpClient.get<Appointment[]>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/range`, {params: httpParams});
+  }
+}
