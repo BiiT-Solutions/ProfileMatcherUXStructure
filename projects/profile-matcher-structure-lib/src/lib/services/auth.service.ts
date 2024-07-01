@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {ProfileMatcherStructureRootService} from './profile-matcher-structure-root.service';
+import {ProfileMatcherRootService} from './profile-matcher-root.service';
 import {AuthService as AuthenticationService} from 'authorization-services-lib';
 
 @Injectable({
@@ -8,7 +8,7 @@ import {AuthService as AuthenticationService} from 'authorization-services-lib';
 })
 export class AuthService extends AuthenticationService {
 
-  constructor(rootService: ProfileMatcherStructureRootService, httpClient: HttpClient) {
+  constructor(rootService: ProfileMatcherRootService, httpClient: HttpClient) {
     super(rootService, httpClient);
   }
 

@@ -4,7 +4,7 @@ import {RootPath} from 'authorization-services-lib';
 @Injectable({
   providedIn: 'root'
 })
-export class ProfileMatcherStructureRootService implements RootPath {
+export class ProfileMatcherRootService implements RootPath {
 
   constructor() { }
 

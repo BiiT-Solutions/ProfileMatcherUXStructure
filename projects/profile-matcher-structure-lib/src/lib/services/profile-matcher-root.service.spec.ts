@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ProfileMatcherStructureRootService } from './profile-matcher-structure-root.service';
+import { ProfileMatcherRootService } from './profile-matcher-root.service';
 
 describe('ProfileMatcherStructureRootService', () => {
-  let service: ProfileMatcherStructureRootService;
+  let service: ProfileMatcherRootService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ProfileMatcherStructureRootService);
+    service = TestBed.inject(ProfileMatcherRootService);
   });
 
   it('should be created', () => {

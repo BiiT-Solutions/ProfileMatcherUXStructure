@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {ProfileMatcherStructureRootService} from "./profile-matcher-structure-root.service";
+import {ProfileMatcherRootService} from "./profile-matcher-root.service";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {map, Observable, pipe} from "rxjs";
 import {Profile} from "../models/profile";
@@ -36,7 +36,7 @@ export class ProfileService {
   //   }))
   // }
 
-  constructor(private rootService: ProfileMatcherStructureRootService, private httpClient: HttpClient) { }
+  constructor(private rootService: ProfileMatcherRootService, private httpClient: HttpClient) { }
 
   getAll(): Observable<Profile[]> {
     return this.httpClient.get<Profile[]>(
