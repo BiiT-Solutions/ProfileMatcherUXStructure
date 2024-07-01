@@ -102,7 +102,7 @@ export class ProfileService {
     let httpParams: HttpParams = new HttpParams();
     httpParams = httpParams.append('from', from.toString());
     httpParams = httpParams.append('to', to.toString());
-    return this.httpClient.get<Appointment[]>(
+    return this.httpClient.get<Profile[]>(
       `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/range`, {params: httpParams});
   }
 }
