@@ -10,32 +10,6 @@ import {Profile} from "../models/profile";
 export class ProfileService {
   private static readonly ROOT_PATH: string = '/profiles'
 
-  // dateFix() {
-  //   return pipe(map((appointment: Appointment) => {
-  //     if (appointment?.startTime) {
-  //       appointment.startTime = new Date(appointment.startTime);
-  //     }
-  //     if (appointment?.endTime) {
-  //       appointment.endTime = new Date(appointment.endTime);
-  //     }
-  //     return appointment;
-  //   }))
-  // }
-  //
-  // dateFixArray() {
-  //   return pipe(map((appointments: Appointment[]) => {
-  //     return appointments.map(appointment => {
-  //       if (appointment?.startTime) {
-  //         appointment.startTime = new Date(appointment.startTime);
-  //       }
-  //       if (appointment?.endTime) {
-  //         appointment.endTime = new Date(appointment.endTime);
-  //       }
-  //       return appointment;
-  //     });
-  //   }))
-  // }
-
   constructor(private rootService: ProfileMatcherRootService, private httpClient: HttpClient) { }
 
   getAll(): Observable<Profile[]> {
@@ -104,5 +78,13 @@ export class ProfileService {
     httpParams = httpParams.append('to', to.toString());
     return this.httpClient.get<Profile[]>(
       `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/range`, {params: httpParams});
+  }
+  getAllByTrackingCode(trackingCode: string): Observable<Profile[]> {
+    return this.httpClient.get<Profile[]>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/tracking-codes/${trackingCode}`);
+  }
+  getAllByType(type: string): Observable<Profile[]> {
+    return this.httpClient.get<Profile[]>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/types/${type}`);
   }
 }
