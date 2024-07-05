@@ -19,7 +19,7 @@ export class Profile extends ElementDto {
   }
   public static override clone(from: Profile): Profile {
     const to: Profile = new Profile();
-    this.copy(from, to);
+    Profile.copy(from, to);
     return to;
   }
 }
