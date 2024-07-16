@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {ProfileMatcherRootService} from "./profile-matcher-root.service";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {map, Observable, pipe} from "rxjs";
+import {Observable} from "rxjs";
 import {Profile} from "../models/profile";
 
 @Injectable({
@@ -31,6 +31,18 @@ export class ProfileService {
   deleteById(id: number): Observable<void> {
     return this.httpClient.delete<void>(
       `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${id}`);
+  }
+  getUsersById(id: number): Observable<string[]> {
+    return this.httpClient.get<string[]>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${id}/users`);
+  }
+  assignUsers(profileId: number, userUuids: string[]): Observable<string[]> {
+    return this.httpClient.post<string[]>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}/users`, userUuids);
+  }
+  removeUsers(profileId: number, userUuids: string[]): Observable<string[]> {
+    return this.httpClient.post<string[]>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}/users/remove`, userUuids);
   }
   countAll(): Observable<number> {
     return this.httpClient.get<number>(
