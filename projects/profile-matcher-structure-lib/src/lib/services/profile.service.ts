@@ -3,6 +3,7 @@ import {ProfileMatcherRootService} from "./profile-matcher-root.service";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Profile} from "../models/profile";
+import {User} from "authorization-services-lib";
 
 @Injectable({
   providedIn: 'root'
@@ -36,13 +37,13 @@ export class ProfileService {
     return this.httpClient.get<string[]>(
       `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${id}/users`);
   }
-  assignUsers(profileId: number, userUuids: string[]): Observable<string[]> {
-    return this.httpClient.post<string[]>(
-      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}/users`, userUuids);
+  assignUsers(profileId: number, users: User[]): Observable<Profile> {
+    return this.httpClient.post<Profile>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}/users`, users);
   }
-  removeUsers(profileId: number, userUuids: string[]): Observable<string[]> {
-    return this.httpClient.post<string[]>(
-      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}/users/remove`, userUuids);
+  unassignUsers(profileId: number, users: User[]): Observable<Profile> {
+    return this.httpClient.post<Profile>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}/users/remove`, users);
   }
   countAll(): Observable<number> {
     return this.httpClient.get<number>(
