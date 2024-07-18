@@ -9,7 +9,7 @@ import {ProfileCandidateId} from "../models/profile-candidate-id";
   providedIn: 'root'
 })
 export class ProfileCandidateCommentService {
-  private static readonly ROOT_PATH: string = '/profile-candidates-comments'
+  private static readonly ROOT_PATH: string = '/profiles-candidates-comments'
 
   constructor(private rootService: ProfileMatcherRootService, private httpClient: HttpClient) { }
 
