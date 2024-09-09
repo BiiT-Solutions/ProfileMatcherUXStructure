@@ -87,7 +87,7 @@ export class ProfileCandidateCommentService {
   }
   updateByProfileIdAndUserUuid(profileId: number, userUuid: string, comment: string): Observable<ProfileCandidateComment> {
     return this.httpClient.post<ProfileCandidateComment>(
-      `${this.rootService.serverUrl}${ProfileCandidateCommentService.ROOT_PATH}/profiles/${profileId}/users/${userUuid}`, comment);
+      `${this.rootService.serverUrl}${ProfileCandidateCommentService.ROOT_PATH}/profiles/${profileId}/users/${userUuid}/comments`, comment);
   }
   getByCreationDateRange(from: Date, to: Date): Observable<ProfileCandidateComment[]> {
     let httpParams: HttpParams = new HttpParams();
