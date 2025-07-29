@@ -49,7 +49,7 @@ export class ProfileService {
       `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${id}`);
   }
 
-  geCandidatesById(id: number): Observable<string[]> {
+  getCandidatesById(id: number): Observable<string[]> {
     return this.httpClient.get<string[]>(
       `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${id}/candidates`);
   }
