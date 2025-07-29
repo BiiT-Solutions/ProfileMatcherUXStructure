@@ -34,28 +34,57 @@ export class ProfileService {
       `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${id}`);
   }
 
+  getByProjectId(projectId: number): Observable<Profile> {
+    return this.httpClient.get<Profile>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/projects/${projectId}`);
+  }
+
+  getByUserUUID(uuid: string): Observable<Profile> {
+    return this.httpClient.get<Profile>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/users/${uuid}`);
+  }
+
   deleteById(id: number): Observable<void> {
     return this.httpClient.delete<void>(
       `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${id}`);
   }
 
-  getUsersById(id: number): Observable<string[]> {
+  geCandidatesById(id: number): Observable<string[]> {
     return this.httpClient.get<string[]>(
-      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${id}/users`);
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${id}/candidates`);
   }
 
-  assignUsers(profileId: number, users: User[]): Observable<Profile> {
+  assignCandidates(profileId: number, users: User[]): Observable<Profile> {
     return this.httpClient.post<Profile>(
-      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}/users`, users);
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}`, users);
   }
 
-  assignUsersByUUID(profileId: number, uuids: string[]): Observable<Profile> {
+  assignCandidatesByUUID(profileId: number, uuids: string[]): Observable<Profile> {
     let httpParams: HttpParams = new HttpParams();
     uuids.forEach(uuid => {
       httpParams = httpParams.append('userUUID', uuid)
     });
     return this.httpClient.post<Profile>(
-      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}/users`, uuids);
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}/candidates`, uuids);
+  }
+
+  unassignCandidates(profileId: number, users: User[]): Observable<Profile> {
+    return this.httpClient.post<Profile>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}/candidates/remove`, users);
+  }
+
+  unassignCandidatesByUUID(profileId: number, uuids: string[]): Observable<Profile> {
+    let httpParams: HttpParams = new HttpParams();
+    uuids.forEach(uuid => {
+      httpParams = httpParams.append('userUUID', uuid)
+    });
+    return this.httpClient.post<Profile>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}/candidates`, uuids);
+  }
+
+  assignUsers(profileId: number, users: User[]): Observable<Profile> {
+    return this.httpClient.put<Profile>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}/users`, users);
   }
 
   unassignUsers(profileId: number, users: User[]): Observable<Profile> {
@@ -63,13 +92,14 @@ export class ProfileService {
       `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}/users/remove`, users);
   }
 
-  unassignUsersByUUID(profileId: number, uuids: string[]): Observable<Profile> {
-    let httpParams: HttpParams = new HttpParams();
-    uuids.forEach(uuid => {
-      httpParams = httpParams.append('userUUID', uuid)
-    });
-    return this.httpClient.post<Profile>(
-      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}/users`, uuids);
+  assignProfiles(uuid: string, profiles: Profile[]): Observable<void> {
+    return this.httpClient.put<void>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/users/${uuid}/profiles`, profiles);
+  }
+
+  unassignProfiles(uuid: string, profiles: Profile[]): Observable<void> {
+    return this.httpClient.put<void>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/users/${uuid}/profiles/remove`, profiles);
   }
 
   countAll(): Observable<number> {
