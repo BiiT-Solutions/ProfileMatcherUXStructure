@@ -58,4 +58,9 @@ export class ProjectService {
     return this.httpClient.post<Project>(
       `${this.rootService.serverUrl}${ProjectService.ROOT_PATH}/profiles/${profileId}/remove`, projects);
   }
+
+  delete(project: Project): Observable<void> {
+    return this.httpClient.post<void>(
+      `${this.rootService.serverUrl}${ProjectService.ROOT_PATH}/delete`, project);
+  }
 }
