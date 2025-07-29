@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Profile} from "../models/profile";
-import {ProjectMatcherRootService} from "./project-matcher-root.service";
 import {Project} from "../models/project";
+import {ProfileMatcherRootService} from "./profile-matcher-root.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ import {Project} from "../models/project";
 export class ProjectService {
   private static readonly ROOT_PATH: string = '/projects'
 
-  constructor(private rootService: ProjectMatcherRootService, private httpClient: HttpClient) {
+  constructor(private rootService: ProfileMatcherRootService, private httpClient: HttpClient) {
   }
 
   getAll(): Observable<Project[]> {
