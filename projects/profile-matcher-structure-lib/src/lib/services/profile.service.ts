@@ -19,7 +19,7 @@ export class ProfileService {
       `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}`);
   }
 
-  getAllByOrganization(organization: string): Observable<Profile[]> {
+  getAllByCreatedOn(createdOn: string): Observable<Profile[]> {
     return this.httpClient.get<Profile[]>(
       `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/created-on/{organization}`);
   }
