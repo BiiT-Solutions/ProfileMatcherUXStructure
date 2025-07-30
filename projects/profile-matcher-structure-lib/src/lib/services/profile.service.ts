@@ -34,8 +34,8 @@ export class ProfileService {
       `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${id}`);
   }
 
-  getByProjectId(projectId: number): Observable<Profile> {
-    return this.httpClient.get<Profile>(
+  getByProjectId(projectId: number): Observable<Profile[]> {
+    return this.httpClient.get<Profile[]>(
       `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/projects/${projectId}`);
   }
 
