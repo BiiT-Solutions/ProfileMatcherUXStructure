@@ -46,7 +46,7 @@ export class ProjectService {
 
   unassignProfiles(projectId: number, profiles: Profile[]): Observable<Project> {
     return this.httpClient.post<Project>(
-      `${this.rootService.serverUrl}${ProjectService.ROOT_PATH}/${projectId}/remove`, profiles);
+      `${this.rootService.serverUrl}${ProjectService.ROOT_PATH}/${projectId}/profiles/remove`, profiles);
   }
 
   assignProjects(profileId: number, projects: Project[]): Observable<Project> {
