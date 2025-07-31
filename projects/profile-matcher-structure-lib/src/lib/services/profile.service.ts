@@ -102,6 +102,11 @@ export class ProfileService {
       `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}/projects/${projectId}/users/remove`, users);
   }
 
+  getUsersById(id: number): Observable<string[]> {
+    return this.httpClient.get<string[]>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${id}/users`);
+  }
+
   assignProfiles(uuid: string, projectId: number, profiles: Profile[]): Observable<void> {
     return this.httpClient.put<void>(
       `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/users/${uuid}/projects/${projectId}/profiles`, profiles);
