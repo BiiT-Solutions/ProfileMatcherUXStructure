@@ -87,24 +87,24 @@ export class ProfileService {
       `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}/candidates`, uuids);
   }
 
-  assignUsers(profileId: number, users: User[]): Observable<Profile> {
+  assignUsers(profileId: number, projectId: number, users: User[]): Observable<Profile> {
     return this.httpClient.put<Profile>(
-      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}/users`, users);
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}/projects/${projectId}/users`, users);
   }
 
-  unassignUsers(profileId: number, users: User[]): Observable<Profile> {
+  unassignUsers(profileId: number, projectId: number, users: User[]): Observable<Profile> {
     return this.httpClient.post<Profile>(
-      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}/users/remove`, users);
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}/projects/${projectId}/users/remove`, users);
   }
 
-  assignProfiles(uuid: string, profiles: Profile[]): Observable<void> {
+  assignProfiles(uuid: string, projectId: number, profiles: Profile[]): Observable<void> {
     return this.httpClient.put<void>(
-      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/users/${uuid}/profiles`, profiles);
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/users/${uuid}/projects/${projectId}/profiles`, profiles);
   }
 
-  unassignProfiles(uuid: string, profiles: Profile[]): Observable<void> {
+  unassignProfiles(uuid: string, projectId: number, profiles: Profile[]): Observable<void> {
     return this.httpClient.put<void>(
-      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/users/${uuid}/profiles/remove`, profiles);
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/users/${uuid}/projects/${projectId}/profiles/remove`, profiles);
   }
 
   countAll(): Observable<number> {
