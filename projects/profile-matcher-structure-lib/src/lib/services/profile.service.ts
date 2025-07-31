@@ -104,7 +104,7 @@ export class ProfileService {
 
   getUsersByProfileId(profileId: number): Observable<string[]> {
     return this.httpClient.get<string[]>(
-      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${id}/users`);
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}/users`);
   }
 
   assignProfiles(uuid: string, projectId: number, profiles: Profile[]): Observable<void> {
