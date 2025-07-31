@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {Profile} from "../models/profile";
 import {Project} from "../models/project";
 import {ProfileMatcherRootService} from "./profile-matcher-root.service";
+import {User} from "authorization-services-lib";
 
 @Injectable({
   providedIn: 'root'
@@ -62,5 +63,26 @@ export class ProjectService {
   delete(project: Project): Observable<void> {
     return this.httpClient.post<void>(
       `${this.rootService.serverUrl}${ProjectService.ROOT_PATH}/delete`, project);
+  }
+
+  assignUsersToProfile(projectId: number, profileId: number, users: User[]): Observable<Project> {
+    return this.httpClient.put<Project>(
+      `${this.rootService.serverUrl}${ProjectService.ROOT_PATH}/${projectId}/profiles/${profileId}/users`, users);
+  }
+
+  unassignUsersFromProfiles(projectId: number, profileId: number, users: User[]): Observable<Project> {
+    return this.httpClient.post<Project>(
+      `${this.rootService.serverUrl}${ProjectService.ROOT_PATH}/${projectId}/profiles/${profileId}/users/remove`, users);
+  }
+
+
+  assignProfilesToUser(projectId: number, userUuid: string, profiles: Profile[]): Observable<Project> {
+    return this.httpClient.put<Project>(
+      `${this.rootService.serverUrl}${ProjectService.ROOT_PATH}/${projectId}/users/${userUuid}/profiles`, profiles);
+  }
+
+  unassignProfilesToUserprojectId(projectId: number, userUuid: string, profiles: Profile[]): Observable<Project> {
+    return this.httpClient.post<Project>(
+      `${this.rootService.serverUrl}${ProjectService.ROOT_PATH}/${projectId}/users/${userUuid}/profiles/remove`, profiles);
   }
 }
