@@ -61,7 +61,7 @@ export class ProfileService {
 
   assignCandidates(profileId: number, users: User[]): Observable<Profile> {
     return this.httpClient.post<Profile>(
-      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}`, users);
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}/candidates`, users);
   }
 
   assignCandidatesByUUID(profileId: number, uuids: string[]): Observable<Profile> {
