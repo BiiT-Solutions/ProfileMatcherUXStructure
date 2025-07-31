@@ -60,7 +60,7 @@ export class ProfileService {
   }
 
   assignCandidates(profileId: number, users: User[]): Observable<Profile> {
-    return this.httpClient.post<Profile>(
+    return this.httpClient.put<Profile>(
       `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}/candidates`, users);
   }
 
@@ -69,13 +69,18 @@ export class ProfileService {
     uuids.forEach(uuid => {
       httpParams = httpParams.append('userUUID', uuid)
     });
-    return this.httpClient.post<Profile>(
+    return this.httpClient.put<Profile>(
       `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}/candidates`, uuids);
   }
 
   unassignCandidates(profileId: number, users: User[]): Observable<Profile> {
     return this.httpClient.post<Profile>(
       `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/${profileId}/candidates/remove`, users);
+  }
+
+  getProfilesByCandidates(uuid: string): Observable<string[]> {
+    return this.httpClient.get<string[]>(
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/candidates/${uuid}`);
   }
 
   unassignCandidatesByUUID(profileId: number, uuids: string[]): Observable<Profile> {
