@@ -21,7 +21,7 @@ export class ProfileService {
 
   getAllByCreatedOn(createdOn: string): Observable<Profile[]> {
     return this.httpClient.get<Profile[]>(
-      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/created-on/{organization}`);
+      `${this.rootService.serverUrl}${ProfileService.ROOT_PATH}/created-on/{createdOn}`);
   }
 
   update(profile: Profile): Observable<Profile> {
