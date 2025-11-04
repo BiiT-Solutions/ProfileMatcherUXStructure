@@ -36,8 +36,8 @@ jobs:
           git config user.name $GITHUB_ACTOR
           git config user.email ${GITHUB_ACTOR}-actions@github.com
           npm version patch --force -m "Version: %s"
-          version=`cat ./projects/fact-manager-structure-lib/package.json | grep -Po '(?<="version": ")[^"]*'`
-          sed -i -e 's/  "version".*/  "version"\: "${version}",/g' ./projects/fact-manager-structure-lib/package.json
+          version=`cat ./projects/profile-matcher-structure-lib/package.json | grep -Po '(?<="version": ")[^"]*'`
+          sed -i -e 's/  "version".*/  "version"\: "${version}",/g' ./projects/profile-matcher-structure-lib/package.json
           npm version patch --force -m "Version: %s"
 
       - name: Push changes
