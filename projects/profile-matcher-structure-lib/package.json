@@ -5,7 +5,7 @@
   "author": "BiiT Sourcing Solutions",
   "private": false,
   "peerDependencies": {
-    "authorization-services-lib": "latest",
+    "@biit-solutions/authorization-services": "latest",
     "@angular/common": "v15-lts",
     "@angular/core": "v15-lts"
   },
