@@ -39,6 +39,7 @@ jobs:
           json_file=./projects/profile-matcher-structure-lib/package.json
           version=`cat package.json | grep -Po '(?<="version": ")[^"]*'`
           sed -i -e "s|  \"version\".*|  \"version\"\: \"${version}\",|g" ${json_file}
+          git add ${json_file}
           git commit -m "Version: ${version}"
 
       - name: Push changes
