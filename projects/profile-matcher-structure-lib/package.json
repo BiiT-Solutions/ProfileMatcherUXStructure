@@ -3,7 +3,7 @@
   "version": "0.0.34",
   "license": "AGPLv3",
   "author": "BiiT Sourcing Solutions",
-  "private": true,
+  "private": false,
   "peerDependencies": {
     "authorization-services-lib": "latest",
     "@angular/common": "v15-lts",
