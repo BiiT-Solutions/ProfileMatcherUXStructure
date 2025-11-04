@@ -36,6 +36,8 @@ jobs:
           git config user.name $GITHUB_ACTOR
           git config user.email ${GITHUB_ACTOR}-actions@github.com
           npm version patch --force -m "Version: %s"
+          cd projects/fact-manager-structure-lib
+          npm version patch --force -m "Version: %s"
 
       - name: Push changes
         uses: ad-m/github-push-action@master
