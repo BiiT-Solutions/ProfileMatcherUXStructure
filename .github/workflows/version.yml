@@ -38,8 +38,8 @@ jobs:
           npm version patch --force -m "Version: %s"
           json_file=./projects/profile-matcher-structure-lib/package.json
           version=`cat package.json | grep -Po '(?<="version": ")[^"]*'`
-          sed -i -e 's|  "version".*|  "version"\: "${version}",|g' ${json_file}
-          npm version patch --force -m "Version: %s"
+          sed -i -e "s|  \"version\".*|  \"version\"\: \"${version}\",|g" ${json_file}
+          git commit -m "Version: ${version}"
 
       - name: Push changes
         uses: ad-m/github-push-action@master
