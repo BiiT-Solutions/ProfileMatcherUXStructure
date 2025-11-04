@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {Profile} from "../models/profile";
 import {Project} from "../models/project";
 import {ProfileMatcherRootService} from "./profile-matcher-root.service";
-import {User} from "authorization-services-lib";
+import {User} from "@biit-solutions/authorization-services";
 
 @Injectable({
   providedIn: 'root'

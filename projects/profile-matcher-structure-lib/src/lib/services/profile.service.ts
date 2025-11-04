@@ -3,7 +3,7 @@ import {ProfileMatcherRootService} from "./profile-matcher-root.service";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Profile} from "../models/profile";
-import {User} from "authorization-services-lib";
+import {User} from "@biit-solutions/authorization-services";
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,8 @@
 {
-  "name": "profile-matcher-structure",
-  "version": "0.0.0",
+  "name": "@biit-solutions/profile-matcher-structure",
+  "version": "0.0.34",
+  "license": "AGPLv3",
+  "author": "BiiT Sourcing Solutions",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -18,7 +20,7 @@
     "@angular/platform-browser": "^15.2.0",
     "@angular/platform-browser-dynamic": "^15.2.0",
     "@angular/router": "^15.2.0",
-    "authorization-services-lib": "^0.0.32",
+    "@biit-solutions/authorization-services": "latest",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
@@ -36,5 +38,9 @@
     "karma-jasmine-html-reporter": "~2.0.0",
     "ng-packagr": "^15.2.2",
     "typescript": "~4.9.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BiiT-Solutions/ProfileMatcherUXStructure.git"
   }
 }
