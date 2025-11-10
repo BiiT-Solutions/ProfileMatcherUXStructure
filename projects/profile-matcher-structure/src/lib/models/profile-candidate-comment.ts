@@ -1,4 +1,4 @@
-import {ElementDto} from "authorization-services-lib";
+import {ElementDto} from "@biit-solutions/authorization-services";
 import {ProfileCandidateId} from "./profile-candidate-id";
 
 export class ProfileCandidateComment extends ElementDto {
